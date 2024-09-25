@@ -1,0 +1,179 @@
+% LaTeX Template (2015 Mc128k)
+
+% Document properties
+\def \varTitle {Funzioni di pi\`u variabili}
+\def \varAuthors {Mc128k}
+\def \varSubject {}
+\def \varKeywords {}
+\def \varCopyright {\textcopyright \  \the\year \  Mc128k}
+\def \varDate {2015-10-14}
+\def \varAbstractTitle {Contenuti}
+\def \varAbstractContents {}
+\def \varPaperType {a4paper}
+\def \varImagesPath {./_Images/}
+
+\input{./_Include/Headers.tex}
+
+\begin{document} \numberwithin{equation}{section} \maketitle \renewcommand{\abstractname}{\varAbstractTitle} \begin{abstract} \varAbstractContents \end{abstract} \tableofcontents \pagebreak \graphicspath{{\varImagesPath}}
+
+% Document body
+\section{Funzioni di più variabili}
+
+Una funzione di più variabili viene espressa come una funzione che accetta in ingresso un parametro composto da più di una dimensione.
+\begin{gather}
+	f:A\subset\mathbb{R}^2\rightarrow\mathbb{R} \\
+	\mathbb{R}^2=\{(x, y) : x\in \mathbb{R}, y\in \mathbb{R}\}
+\end{gather}
+
+\begin{observation}
+Per queste funzioni non ha senso parlare di monotonia, dato che due numero di $\mathbb{R}^2$ (come nel caso dei numeri immaginari) non si possono direttamente confrontare.	
+\end{observation}
+
+Ripercorrendo gli argomenti studiati nel corso di Analisi 1, si definiscono i concetti di intorno, intervallo, punto di accumulazione, limite.
+
+\begin{definition}[Punto di accumulazione]
+	Mentre in $\mathbb{R}$ un punto di accumulazione si riferisce ad un intervallo, in $\mathbb{R}^2$ si riferisce ad un insieme di punti con una distanza massima dal centro definita. In altre parole un cerchio.
+	\begin{gather}
+		\{(x, y)\in \mathbb{R}^2 : \sqrt{(x-x_0)^2+(y-y_0)^2}<\delta\} \\
+		B((x_0, y_0), \delta)
+	\end{gather}
+	L'intorno di un punto si definisce quindi con $B$ (ball), che rappresenta un cerchio centrato in $(x_0, y_0)$ e con raggio $\delta$ (fig.\ref{ball}).
+\end{definition}
+
+\begin{figure}[h]
+		\includegraphics[width=120pt]{ball.eps}
+		\centering
+		\caption{Intorno in $\mathbb{R}^2$}
+		\label{ball}
+\end{figure}
+
+\begin{definition}[Intorno]
+	$A\subset \mathbb{R}^2$ è ingorno di $(x_0, y_0)\in \mathbb{R}^2$ se $\exists \delta>0$ tale che $A\supseteq B((x_0, y_0), \delta)$.
+\end{definition}
+
+\begin{definition}[Punto interno]
+	Un punto $(x_0, y_0)\in \mathbb{R}^2$ è interno all'intorno $A$ se $\exists \delta>0$ tale che $B((x_0, y_0), \delta)\subset A$.
+\end{definition}
+
+\begin{definition}[Punto di accumulazione]
+	Sia $A\subseteq\mathbb{R}^2$ e $(x_0, y_0)\in \mathbb{R}^2$, si dice che il punto è di accumulazione di $A$ se $\forall \delta>0, B((x_0, y_0), \delta)\cap A \backslash \{(x_0, y_0)\}\neq 0$.
+\end{definition}
+
+\begin{definition}[Punto di frontiera]
+	Sia $A\subset\mathbb{R}^2$ e $(x_0, y_0)\in \mathbb{R}^2$, il punto è di frontiera per $A$ se $A\cap B((x_0, y_0), \delta) \neq \emptyset$ e $A\cap B((x_0, y_0), \delta)\neq B$, quindi un intorno sempre più piccolo deve avere punti in comune con l'insieme considerato, ma non tutti, altrimenti $(x_0, y_0)$ sarebbe interno. Un punto di frontiera \emph{potrebbe anche non far parte dell'insieme}.
+\end{definition}
+
+\begin{observation}
+Un punto interno è sempre di accumulazione, viceversa un punto di accumulazione potrebbe non essere interno (per esempio un punto di frontiera potrebbe non far parte dell'insieme ma essere lo stesso di accumulazione per lo stesso).	
+\end{observation}
+
+\begin{definition}[Frontiera]
+	Si dice frontiera dell'insieme, l'insieme di tutti i suoi punti di frontiera.
+	\begin{equation}
+		\partial A=\{x\in \mathbb{R}^2 : x \text{ è di frontiera}\}
+	\end{equation}
+\end{definition}
+
+\begin{definition}[Insieme chiuso]
+	Un insieme $B\subseteq \mathbb{R}^2$ si dice chiuso se $\partial B\subseteq B$. In altre parole, tutti i punti di frontiera devono essere contenuti dall'insieme.
+\end{definition}
+
+\begin{definition}
+	Un insieme $A$ si dice aperto se è costituito da soli punti interni, quindi se contiene anche un solo punto di frontiera, non è aperto.
+	\begin{figure}[h]
+		\includegraphics[width=160pt]{insiemi-aperti.eps}
+		\centering
+		\caption{Insieme aperto e non aperto}
+	\end{figure}
+\end{definition}
+
+\begin{observation}
+	Un insieme può essere né aperto né chiuso, ma non entrambi contemporaneamente.
+\end{observation}
+
+\begin{definition}[Chiusura]
+	Si dice chiusura di $A\subset\mathbb{R}^2$ l'insieme $\bar{A}=A\cup\partial A$.
+\end{definition}
+
+\begin{observation}
+	Se $A$ è chiuso, $\bar{A}=A$, se è un insieme qualsiasi allora $\overline{(\bar{A})}=\bar{A}$.
+\end{observation}
+
+La chiusura di un intorno $\overline{B((x_0, y_0), r)}$ è quindi la circonferenza data da:
+\begin{equation}
+	\{(x, y) \in \mathbb{R}^2 : \sqrt{(x-x_0)^2+(y-y_0)^2}\leq \mathbb{R}\}
+\end{equation}
+
+Inoltre ogni insieme è contenuto nella chiusura dello stesso, stessa cosa per il complementare:
+\begin{equation}
+	A\subseteq\bar{A}\quad \bar{A}^C\subseteq A^C
+\end{equation}
+
+\begin{definition}[Insieme limitato]
+	Secondo la definizione di Analisi 1, un insieme $A\subset\mathbb{R}$ è limitato se $\inf A ,\sup A \in \mathbb{R}$, e in tal caso quindi $A\subset [\inf A, \sup A]$. In $\mathbb{R}^2$ un insieme $A$ è limitato se $\exists r>0$ tale che $A\subset B((0, 0), r)$. 
+\end{definition}
+
+\begin{definition}[Intorno di $\infty$]
+	Si dice che $A\subset \mathbb{R}^2$ è intorno di $\infty$ se $\exists r>0$ tale che $A\supset B((0, 0), r)^C$, dove $C$ indica l'insieme complementare.
+\end{definition}
+
+\begin{definition}[$\infty$ di accumulazione]
+	$\infty$ si dice di accumulazione per $A$ se $\forall k>0, A\cap B((0, 0), r)^C\neq \emptyset$. L'insieme $A$ si estende quindi a infinito.
+\end{definition}
+
+\begin{definition}[Insieme limitato]
+	Un insieme $A$ è limitato se $\exists r>0$ tale che $A\subset B((0, 0), r)$, quindi $\exists r>0$ tale che $\sqrt{x^2+y^2}<r, \forall (x, y)\in A$
+\end{definition}
+
+\begin{definition}[Punto isolato]
+	Un punto $(x_0, y_0)\in \mathbb{R}^2$ si dice isolato per un insieme $A$ se $\exists r>0$ tale che $B((x_0, y_0), r)\cap A={(x_0, y_0)}$. Quindi esiste un intorno che lo contiene senza contenere altri punti dell'insieme.
+\end{definition}
+
+\begin{observation}
+	Se $(x_0, y_0)$ è isolato per $A$ il punto non è di accumulazione. Comunque è sempre vero che $(x_0, y_0)\in A$ e $(x_0, y_0)\in \partial A$.
+\end{observation}
+
+\begin{definition}[Insieme convesso per archi]
+	$A\subset \mathbb{R}^2$ si dice convesso (per archi) se $\forall p, a\in A, \exists$ una curva $\gamma$ con sostegno contenuto in $A$ che ha $p$ come punto iniziale e $a$ come punto finale. Esiste quindi una traiettoria che percorre solo punti dell'insieme per qualunque coppia di punti presi.
+\end{definition}
+
+\begin{definition}[Insieme convesso]
+	$A\subset \mathbb{R}^2$ si dice convesso se $\forall P, Q\in A$ il \emph{segmento} che unisce $P$ a $Q$ è interamente contenuto in $A$. Quindi ogni curva deve avere come sostegno un segmento. (ad esempio ogni intorno è una insieme convesso).
+\end{definition}
+
+\section{Funzioni}
+Una funzione viene definita come una legge che lega punti del dominio, in questo caso $\mathbb{R}^2$ al codominio, qui $\mathbb{R}$.
+\begin{equation}
+	f:A\rightarrow\mathbb{R}, \quad A\subset \mathbb{R}^2
+\end{equation}
+
+\begin{example}
+	\begin{equation*}
+		f(x, y)=\log(x^2+y-2)
+	\end{equation*}	
+	Per la funzione indicata esistono punti del dominio che non si possono considerare perché altrimenti il logaritmo non avrebbe senso (non è definito). Se non viene specificato il dominio, si considera quello \textbf{massimale}, considerato dall'argomento del logaritmo:
+	\begin{equation*}
+		\{(x, y)\in \mathbb{R}^2 : x^2+y-2>0\}
+	\end{equation*}
+	Viene quindi preso non un intervallo di numeri reali, bensì una porzione di grafico (epigrafico o sottografico).
+\end{example}
+
+\begin{definition}
+	Sia $f:A\rightarrow\mathbb{R}$ e $(x_0, y_0)\in A$, $(x_0, y_0)$ si dice punto di massimo [minimo] assoluto di $f$ se $f(x, y)\leq [\geq]f(x_0, y_0), \forall (x, y)\in A$. Una funzione può anche non ammettere un massimo assoluto pur ammettendo un massimo relativo.
+\end{definition}
+
+\begin{definition}
+	$(x_0, y_0)\in A$ è un punto di massimo [minimo] relativo stretto se $(x_0, y_0)$ è punto interno di $A$ e $\exists r>0$ tale che $B((x_0, y_0), r)\subset A$ e $f(x, y)<[>]f(x_0, y_0), \forall (x, y)\in B((x_0, y_0), r) \backslash\{(x_0, y_0)\}$.
+\end{definition}
+
+\begin{definition}
+	Sia $k\in \mathbb{R}$:
+	\begin{itemize}
+		\item L'insieme $\{f\geq k\} := \{(x, y)\in A : f(x, y)\geq k\}$ si chiama sopralivello $k$ di $f$
+		\item L'insieme $\{f\leq k\} := \{(x, y)\in A : f(x, y)\leq k\}$ si chiama sottolivello $k$ di $f$
+		\item L'insieme $\{f= k\} := \{(x, y)\in A : f(x, y)= k\}$ si chiama di livello $k$ di $f$
+	\end{itemize}
+	
+\end{definition}
+
+\end{document}

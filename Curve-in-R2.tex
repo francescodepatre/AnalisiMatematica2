@@ -1,0 +1,518 @@
+% Document properties
+\def \varTitle {Curve in R2}
+\def \varAuthors {Mc128k}
+\def \varSubject {}
+\def \varKeywords {}
+\def \varCopyright {\textcopyright \  \the\year \  Mc128k}
+\def \varDate {2015-09-01}
+\def \varAbstractTitle {Contenuti}
+\def \varAbstractContents {Introduzione alle curve, tipi, forma cartesiana, lunghezza, parametro lunghezza d'arco, coordinate polari, funzioni iperboliche, integrale curvilineo}
+\def \varPaperType {a4paper}
+\def \varImagesPath {./_Images/}
+
+\input{./_Include/Headers.tex}
+
+\begin{document} \numberwithin{equation}{section} \maketitle \renewcommand{\abstractname}{\varAbstractTitle} \begin{abstract} \varAbstractContents \end{abstract} \tableofcontents \pagebreak \graphicspath{{\varImagesPath}}
+
+% Document body
+\section{Curve}
+\begin{definition}[Curva]
+Si dice curva una funzione continua $\varphi$ definita in un intervallo $I$ che va in $\mathbb{R}^2$ (quindi $\varphi : I \rightarrow \mathbb{R}^2$) tale che $t\in I\quad \varphi(t)\in \mathbb{R}^2 \Longleftrightarrow I\rightarrow \mathbb{R} ; t\rightarrow x(t); t\rightarrow y(t)$
+\end{definition}
+
+La definizione potrebbe non essere chiara. Una curva rappresenta un oggetto {\em unidimensionale} e continuo, un punto che si muove nel tempo. Nella definizione $t$ indica il tempo corrente, e il punto si muove in un piano $\mathbb{R}^2$. Il disegno rappresenta un oggetto tridimensionale solo per far capire come una curva dipende da una dimensione intrinseca, che è il tempo. In realtà si può muovere solo su un piano e con diverse velocità.
+\begin{figure}[h]
+	\includegraphics[width=300pt]{_Images/curva-def.eps}
+	\centering
+	\caption{Definizione di curva}
+\end{figure}
+
+\begin{definition}[Sostegno di una curva]
+Data una funzione $\varphi : I \rightarrow \mathbb{R}^2$, il sostegno di $\varphi$ è il sottoinsieme di $\mathbb{R}^2$ dato da $\varphi(I)=\{x(t), y(t) : t\in I\}$, quindi l'\textbf{immagine della curva}.
+\end{definition}
+
+Due curve possono essere diverse pur avendo lo stesso sostegno, per esempio una può procedere più velocemente di un'altra nel percorrere lo stesso identico percorso.
+
+Per capire meglio il sostegno rispetto alla definizione di curva, si consideri un esempio pratico: un pendolo viene fatto oscillare mentre incide una traccia su un foglio sottostante (non importa come), in questo caso il pendolo stesso con le leggi che lo governano rappresenta la curva, mentre la traccia lasciata è il sostegno, l'immagine in $\mathbb{R}^2$ (il foglio) che la curva precorre in tempi variabili (vedi fig.\ref{pragmat}).
+\begin{figure}[h]
+	\includegraphics[width=300pt]{curva-pragmatica.eps}
+	\centering
+	\caption{Esempio pragmatico}
+	\label{pragmat}
+\end{figure}
+
+
+\begin{definition}[Curva chiusa]
+Una curva $\varphi:[a, b]\rightarrow \mathbb{R}^2$ si dice chiusa (o laccio) se $f(a)=f(b)$.
+\end{definition}
+
+\begin{example}
+Definita la curva data da:
+\[
+	\begin{cases}
+	x(t)=2+2t \\
+	y(t)=3-t
+	\end{cases}
+\]
+Sia $t\in\mathbb{R}$, allora il sostegno è definito dalla equazione della retta $P(2, 3)$ con direzione $\binom{2}{-1}$. Inoltre la curva è chiusa.
+\end{example}
+
+\begin{definition}[Curva semplice]
+Una curva $\varphi:I\rightarrow \mathbb{R}^2$ si dice semplice se $\forall t_1, t_2\in I$ con $t_1\neq t_2$ e almeno uno tra $t_1$ e $t_2$ che non sia estremo di $I$ si ha $\varphi(t_1)\neq \varphi(t_2)$. Viene detta anche \textbf{arco di Jordan}. Non devono esserci sovrapposizioni nella curva, ogni coppia di valori deve portare a valori distinti nel codominio.
+\end{definition}
+
+\begin{observation}
+Se $t \rightarrow x(t)$ è iniettiva, allora la curva è semplice. Infatti in questo caso la equazione $x(t_1)=x(t_2)$ ha una unica soluzione in cui $t_1=t_2$.
+\end{observation}
+
+\begin{definition}[Curva derivabile]
+Una curva $\varphi:I\rightarrow \mathbb{R}$ si dice derivabile in $t_0\in I$ se lo sono $t\rightarrow x(t)$ e $t \rightarrow y(t)$. In tal caso si pone $\varphi ' (t_0)=(x'(t_0), y'(t_0))$.
+
+Inoltre si dice derivabile in $I$ se è derivabile in ogni punto appartenente all'intervallo.
+\end{definition}
+
+\begin{definition}[Classe]
+Si dice di classe $C^1$ in $I$ se è derivabile in $I$ e le funzioni $t \rightarrow x'(t)$, $t \rightarrow y'(t)$ sono continue in $I$.
+\end{definition}
+\subsection{Curve regolari}
+\begin{definition}[Curva regolare] \label{def-curve-reg}
+Una curva $\varphi:I\rightarrow\mathbb{R}$:
+\begin{itemize}
+	\item Si dice regolare in $t_0\in I$ se $\exists \varphi ' (t_0)$ e $\varphi '(t_0)\neq (0, 0)$
+	\item Si dice regolare in $I$ se lo è in ogni $t_0\in I$
+	\item Si dice regolare (rispetto a $C^1$) a tratti in $I$ se $I$ si può suddividere in un numero finito di intervalli $I_1, ..., I_k$ tale che $\varphi | _ {I_\gamma}$ è regolare $\forall \gamma=1, ..., k$.
+\end{itemize} 
+\end{definition}
+
+
+\begin{example}
+Si faccia riferimento alla figura \ref{es-1-2} per il sostegno della curva.
+\[
+	\begin{cases}
+	x(t) = t^2 - 1 \\
+	y(t) = t(t^2 - 1)
+	\end{cases}, t\in [-2, 2]
+\]
+\[
+\varphi '(t) = (2t, 3t^2 - 1) \forall t \in [-2, 2]
+\]
+La curva \textbf{è regolare} perchè non esiste un punto $t_0$ per cui le due derivate risultino zero contemporaneamente (vedi definizione \ref{def-curve-reg}).
+\[
+	\begin{cases}
+	2t=0 \\
+	3t^2 - 1 = 0
+	\end{cases} \rightarrow \emptyset
+\]
+\end{example}
+
+\begin{figure}
+	\includegraphics[width=160pt]{es-1-2.pdf}
+	\centering
+	\caption{Sostegno di una curva}
+	\label{es-1-2}
+\end{figure}
+
+\begin{example}
+\[
+	\varphi(t) = \begin{cases} t^3 \\ t^6 - 1 \end{cases}, t\in [0, 2]
+\]
+La curva è semplice perchè le componenti sono iniettive. Inoltre è di classe $C^1$ in $[0, 2]$, dato che le componenti sono derivabili e con derivata continua.
+\[
+	\varphi '(t) = (3t^2, 6t^5) \forall t\in [0, 2]
+\]
+Non è regolare, perchè nel punto $t=0$ le derivate risultano $(0, 0)$. Si può definire la retta tangente al sostegno di $\varphi$ in un punto $P$. Il sostegno risulta essere $y=x^2 - 1, x\in [0, 8]$.
+
+Per fare un esempio di applicazione, si prenda il punto $t_0=1$, $P=\varphi(t_0)=(1, 0)$, $\varphi ' (1) = (3, 6)$, quindi la retta tangente al sostegno di $\varphi$ in $(1, 0)$ ha equazione $y=\frac{6}{3}(x-1)+0 \Rightarrow y = 2x-2$.
+\end{example}
+
+
+\subsection{Retta tangente}
+\begin{definition}[Retta tangente]
+Sia $\varphi : I \rightarrow \mathbb{R}^2$ una curva regolare, si definisce retta tangente al sostegno della curva in un punto $P=\varphi(t_0)$ la retta passante per $P$ e avente direzione $\varphi ' (t_0)$. La direzione è detta \textbf{vettore tangente}, e segue l'evoluzione della curva.
+\begin{equation}
+	\varphi '(t_0) = (x'(t_0), y'(t_0))
+\end{equation}
+
+Per trovare il vettore ortogonale a quello dato (\textbf{normale alla curva}) basta scambiare le due componenti e invertire il segno di una delle due.
+\begin{equation}
+	\vec{y_1}=(y_2'(t_0), -y_1'(t_0))
+\end{equation}
+
+La formula del versore normale si ottiene quindi nel seguente modo:
+\begin{equation}
+	\left\{ \frac{\varphi_2'(t_0)} {\sqrt{\varphi_1'(t_0)^2+\varphi_2'(t_0)^2}} , \frac{\varphi_1'(t_0)}{\sqrt{\varphi_1'(t_0)^2+\varphi_1'(t_0)^2 }} \right\}
+\end{equation}
+
+\begin{observation}
+Se la curva è percorsa in senso antiorario, la normale alla curva è uscente, altrimenti è entrante.	
+\end{observation}
+
+
+\end{definition}
+
+\begin{observation}
+La retta tangente si può scrivere in forma $y=mx+q$ a meno che non sia verticale, in tal caso va scritta in forma parametrica.
+\begin{equation}
+	r: \begin{cases} x=x(t_0)+x'(t_0)(t-t_0) \\ y=y(t_0)+y'(t_0)(t-t_0) \end{cases}
+\end{equation}
+\end{observation}
+
+
+
+\subsection{Curve equivalenti}
+Sono curve con lo stesso sostegno che mantengono le proprietà.
+
+\begin{definition}[Curve equivalenti]
+Due curve $\varphi : I \rightarrow \mathbb{R}^2$ e $\psi : J \rightarrow \mathbb{R}^2$ si dicono equivalenti se $\exists h : I \rightarrow J$ di classe $C^1$ invertibile con inversa di classe $C^1$ tale che:
+\[
+	\varphi(t)=\psi(h(t)) \forall t\in I
+\]
+\[
+	\varphi = \psi \circ h \Leftrightarrow \psi = \varphi \circ h ^{-1}
+\]
+\end{definition}
+
+\begin{observation}
+Date due curve equivalenti $\varphi$ e $\bar{\varphi}$, se la prima è semplice, allora la è anche l'altra.	
+\end{observation}
+
+
+\begin{example}
+\[
+	\varphi(t) = \begin{cases} t^3 \\ t^6 - 1 \end{cases}, t\in [0, 2] = I
+\]
+\[
+	\psi(s) = \begin{cases} s \\ s^2 - 1 \end{cases}, s\in [0, 8] = J
+\]
+
+$h: I \rightarrow J$ risulta essere $t\rightarrow t^3$.
+
+\[
+	\psi(h(t)) = \psi(t^3) = \{(t^3)^2 - 1\rightarrow t ^6 - 1\}, \forall t\in [0, 1]
+\]\[
+	h^{-1}[0, 8] \rightarrow [0, 2]\quad
+	h^{-1}(x) = \sqrt[3]{s}, \forall s\in [0, 2]
+\]
+È quindi verificata la invertibilità di $h$. Bisogna tuttavia notare che la radice cubica \emph{non è derivabile in $0$}, quindi la inversa non è di classe $C^1$, le due curve \textbf{non sono equivalenti}.
+\end{example}
+
+% Verificare??
+Bisogna notare che due curve, per essere equivalenti non devono avere punti di flesso a tangente orizzontale, dato che altrimenti nella funzione inversa si convertirebbero a punti di flesso verticale, che non sarebbero derivabili.
+
+\subsection{Forma cartesiana}
+Se una curva viene espressa con una delle seguenti forme, si dice in forma cartesiana.
+\begin{gather}
+	\varphi = \begin{cases} x = t \\ y = f(t) \end{cases}, t\in I \\
+	\varphi = \begin{cases} x = f(t) \\ y = t \end{cases}, t\in I 
+\end{gather}
+In questo caso il sostegno è facile da calcolare e risulta ${(x, f(x)) : x\in I}$ oppure ${(f(y), y) : y \in I}$. Una curva in forma cartesiana \emph{non può essere mai chiusa}, e il sostegno è il grafico di una funzione.
+
+\begin{observation}
+Una curva in forma cartesiana non può essere chiusa, essendo rappresentata da una funzione, che non può assumere due valori diversi per la stessa variabile indipendente.	 Inoltre è di classe $C^1$ se e solo se è di classe $C^1$ in $I$.
+\end{observation}
+
+
+\subsection{Lunghezza}
+Considerata una curva $\varphi : [a, b] \rightarrow \mathbb{R}^2$, sia $a=t_0c, ..., t_nc=b$ una partizione di $[a, b]$, considerando la spezzata che passa per i punti $P_0=\varphi(a), P_1=\varphi(t_1), ..., P_{n-1}=\varphi(t_{n-1}), P_n=\varphi(b)$, la sua lunghezza è data dalla somma delle spezzate costruite da un punto all'altro:
+\[
+	\| \overline{P_0P_1}\|+ \|\overline{P_1P_2}\| + ... + \|\overline{P_{n-1}P_n}\|
+\]
+
+Il numero di suddivisioni definisce la precisione di misurazione della lunghezza, quindi più se ne aggiungono più il valore si avvicina alla lunghezza effettiva. Si dice che $\varphi$ è \textbf{rettificabile} se l'estremo superiore della somma delle lunghezze della poligonale costruita, al variare della partizione $d[a, b]$, è finito, tale estremo si dice quindi lunghezza della curva.
+
+Un altro dato importante, il modulo della velocità istantanea, viene dato dalla derivata prima della curva (essendo la velocità lo spostamento in $dt$):
+\begin{equation}
+	\left\|\varphi'(t)\right\|=\sqrt{(\varphi_1(t))^2+(\varphi_2(t))^2}
+\end{equation}
+
+Con un integrale quindi si possono considerare intervalli infinitesimi e fare la somma di essi.
+
+\begin{theorem}
+Se $\varphi$ è di classe $C^1$ su $[a, b]$ (o a tratti su $[a, b]$), allora $\varphi$ è rettificabile, e la sua lunghezza è:
+\begin{equation}
+	\mathcal{L}(\varphi)=\int_{a}^{b}\|\varphi'(t)\|dt=\int_{a}^{b} \sqrt{(\varphi_1(t))^2+(\varphi_2(t))^2}dt
+\end{equation}
+\end{theorem}
+
+\begin{example}
+\[
+	\varphi(t)=\begin{cases}
+		2+5\cos(t) \\
+		3+5\sin(t)
+	\end{cases}	t\in [0, \pi]
+\]
+Risulta essere una semicirconferenza centrata in $(2, 3)$ di raggio $5$.
+
+Si vuole parametrizzare un arco di circonferenza percorso nella direzione opposta che va da $\pi$ a $4/3\pi$, se non ci fosse da cambiare la direzione basterebbe semplicemente applicare il nuovo intervallo, mentre per far percorrere il tragitto al contrario bisogna cambiare segno alla seconda componente (facendo in modo di invertire la direzione verticale). Inoltre bisogna fare attenzione all'intervallo, non viene più riferito rispetto alla curva originale.
+\[
+	\varphi(t)=\begin{cases}
+		2+5\cos(t) \\
+		3-5\sin(t)
+	\end{cases}	t\in [\frac{\pi}{2}, \pi]
+\]
+
+
+\end{example}
+
+\begin{theorem}
+Se $\varphi : [a, b]\rightarrow \mathbb{R}^2$ e $\psi : [c, d]\rightarrow \mathbb{R}^2$ sono equivalenti e di classe $C^1$, hanno la stessa lunghezza, $\mathcal{L}(\varphi)=\mathcal{L}(\psi)$. Quindi se si cambia la velocità di percorrenza di una curva la lunghezza non cambia. L'unico modo per avere una curva con lo stesso sostegno di un'altra ma con lunghezza diversa è percorrere più volte il sostegno.
+\end{theorem}
+
+\begin{observation}
+Se $\varphi:[a,b]\rightarrow\mathbb{R}^2$ è $C^1$ a tratti, allora la lunghezza si calcola sommando i singoli contributi.
+\end{observation}
+
+\section{Parametro lunghezza d'arco}
+Un punto su una curva si può individuare univocamente dato un tempo, oppure si può indicare la distanza dall'inizio della curva, quindi indicando la lunghezza dell'arco percorso.
+
+Quindi per individuare un punto in una curva $\varphi : [a, b]\rightarrow\mathbb{R}^2$ basta avere il tempo esatto:
+\begin{equation}
+	P=\varphi(t)
+\end{equation}
+
+Si può fare in modo che il parametro non sia un numero compreso nell'intervallo $[a, b]$, ma un numero che parte da zero e arriva fino alla lunghezza totale della curva:
+\begin{equation}
+	s:[a, b]\rightarrow[0, \mathcal{L}(\varphi)] 
+\end{equation}
+
+Ottenendo quindi una funzione che, dato lo stesso parametro $t$ compreso in $[a, b]$, restituisce la lunghezza percorsa nella curva.
+\begin{equation}
+	S(t)=\int_a^t \left\|\varphi'(t)\right\| dt
+\end{equation}
+
+\begin{figure}
+	\includegraphics[width=150pt]{parametro-lunghezza-arco.eps}
+	\centering
+	\caption{Parametro lunghezza d'arco}
+\end{figure}
+
+Se la curva è regolare, $\left\|\varphi'(t)\right\|>0, \forall t\in [a, b]$ e $\left\|\varphi'(t)\right\|$ è continua in $[a, b]$, allora $s(t)$ è derivabile e $s'(t)=\left\|\varphi'(t)\right\|>0, \forall t\in [a, b]$.
+
+Quindi $S$ è invertibile, e chiamiamo $t(s)$ la sua inversa, interpretando $s$ come parametro della lunghezza d'arco.
+\begin{gather}
+	\varphi(t(s))=\tilde{\varphi}(s) \\
+	\tilde{\varphi} : [0, \mathcal{L}(\varphi)]\rightarrow\mathbb{R}^2 \\
+	\frac{d}{ds}t(s)=\frac{1}{\frac{ds}{dt}t(s)}=\frac{1}{\left\|\varphi'(t(s))\right\|}
+\end{gather}
+
+La derivata dell'inversa si ottiene:
+\begin{equation}
+	\frac{d}{dx}\varphi^{-1}(x)=\frac{1}{\varphi'(\varphi^{-1}(x))}
+\end{equation}
+
+Quindi:
+
+\begin{equation}
+	\frac{d}{ds} \tilde{\varphi}(s)=\frac{d}{ds}(\varphi(t(s)))=\varphi'(t(s)) \frac{d}{ds}t(s)=\frac{\varphi'(t(s))}{\left\|\varphi'(t(s))\right\|}
+\end{equation}
+
+\section{Coordinate polari}
+I punti di un piano si possono individuare in diversi modi, tra cui coordinate cartesiane e polari. Individuare un punto tramite coordinate polari vuol dire trovare un angolo $\vartheta$ e una distanza $\rho$ che univocamente lo rappresentino. Entrambi sono riferiti ad una origine e un asse orientato.
+\begin{figure}
+	\includegraphics[width=130pt]{coord-polari.eps}
+	\centering
+	\caption{Coordinate polari}
+\end{figure}
+
+Una curva in forma polare può essere espressa come una lunghezza in funzione dell'angolo o viceversa:
+\begin{gather}
+	\rho=f(\vartheta), \vartheta\in I \\
+	\vartheta=g(\rho), \rho\in J
+\end{gather}
+
+Negli esempi quando vengono indicati intervalli $I$ o $J$ si intende un angolo nel primo caso e una distanza nel secondo.
+
+La forma parametrica di una curva si ottiene 
+
+\begin{example}
+La stessa curva può essere espressa nei due modi equivalenti:
+\begin{gather*}
+	\vartheta=\frac{\pi}{4}, \quad \rho\in [0, 1] \\
+	g(\rho)=\frac{\pi}{4}, \quad J=[0, 1]
+\end{gather*}
+Nonostante tutto esistono curve che non si possono sempre rappresentare in entrambe le forme, per esempio una curva chiusa non può essere mai funzione della lunghezza $\rho$.
+\end{example}
+
+\subsection{Da forma polare a cartesiana}
+
+Per passare dalla forma polare a cartesiana si usano le formule seguenti:
+\begin{equation}
+	\begin{cases}
+		x=\rho\cdot \cos \vartheta \\
+		y=\rho\cdot \sin \vartheta
+	\end{cases} 
+\end{equation}
+
+\subsection{Da forma parametrica a cartesiana}
+Per ottenere le coordinate cartesiane, dato un punto in una funzione parametrica (che prende la lunghezza $\rho$ o l'angolo $\vartheta$): 
+
+\begin{gather}
+	\begin{cases}
+		x=f(t)\cdot \cos t \\
+		y=f(t)\cdot \sin t
+	\end{cases} t\in I, \quad \rho=f(t) \label{polar-param-1}\\
+	\begin{cases}
+		x=t\cdot \cos(g(t)) \\
+		y=t\cdot \sin(g(t))
+	\end{cases} t\in J, \quad \vartheta=g(t) \label{polar-param-2} \\
+	\begin{cases}
+		x'(t)=f'(t)\cos t-f(t)\sin t \\
+		y'(t)=f'(t)\sin t+f(t)\cos t
+	\end{cases} \forall t\in I
+\end{gather}
+
+\begin{example}
+Si vuole trovare il sostegno della curva:
+\[
+	\rho=6\sin\vartheta,\quad \vartheta\in [0, \pi]
+\]
+Provando a passare alla formulazione parametrica e applicando le formule di duplicazione si ottiene un risultato utilizzabile.
+\begin{gather*}
+	\begin{cases}
+	x=6\sin t\cos t\\
+	y=6(\sin t)^2 \end{cases} \\
+	\begin{cases}
+		x=3\sin(2t) \\
+		y=3-3\cos(2t)
+	\end{cases}
+\end{gather*}
+Il sostegno ottenuto è quindi una circonferenza di centro $(0, 3)$ e raggio $3$. 
+\end{example}
+
+\subsection{Calcolo norma vettore derivato}
+%TODO: ????
+\begin{gather}
+	(x'(t))^2+(y'(t))^2 = \\
+	\begin{align}
+	&=(f'(t)\cos t-f(t)\sin t)^2 + (f'(t)\sin t + f(t) \cos t)^2 \\ 
+	&= (f'(t))^2+(f(t))^2 
+	\end{align} \\
+	\mathcal{L}(\varphi)=\int_a^b \sqrt{(f(t))^2+(f'(t))^2} dt
+\end{gather}
+
+La lunghezza di una curva in forma cartesiana si ottiene:
+\begin{gather}
+	\varphi: \begin{cases}
+		x(t)=t \\
+		y(t)=f(t)
+	\end{cases} \\
+	\left\|\varphi'(t)\right\|=\sqrt{1+(f'(t))^2}, \forall t\in [a, b] \\
+	\mathcal{L}(\varphi)=\int_a^b \sqrt{1+(f'(t))^2} dt
+\end{gather}	
+
+
+\begin{example}
+	$\rho=e^\vartheta\quad \vartheta\in [0, \pi]$
+	
+	$f(t)=e^t$
+	
+	$f'(t)=e^t, \forall t\in [0, \pi]$	
+	
+	$\mathcal{L}(\varphi)=\int_0^\pi \sqrt{e^{2t}+e^{2t}}dt=\int_0^\pi \sqrt{2} e^t dt=\sqrt{2}(e^\pi -1)$
+	
+\end{example}
+
+\section{Funzioni iperboliche}
+Sono funzioni che hanno proprietà simili a quelle del seno e del coseno, ma sono costituite da funzioni iperboliche.
+
+\begin{figure}
+	\includegraphics[width=290pt]{iperboliche.pdf}
+	\centering
+	\caption{Funzioni iperboliche}
+\end{figure}
+
+
+\begin{gather}
+	\sinh t=\frac{e^t-e^{-t}}{2} \\
+	\cosh t=\frac{e^t+e^{-t}}{2} \\
+	(\sinh t)'=\cosh t \\
+	(\cosh t)'=\sinh t \\
+	(\cosh t)^2-(\sinh t)^2 = 1
+\end{gather}
+
+Le funzioni inverse sono rispettivamente $\text{arcsinh } x$ e $\text{arccosh }x$.
+
+
+\section{Integrale curvilineo}
+Si prenda come esempio un filo elettrico con densità di massa che varia in ogni punto $P(x, y)$ a seconda della funzione $f(x, y)$. Se si vuole calcolare la massa totale del filo bisogna fare uso di un integrale, ma dato che la funzione accetta più variabili, bisogna introdurre un nuovo tipo di integrale, detto curvilineo.
+
+\begin{equation}
+	\int_\varphi f ds
+\end{equation}
+
+Nell'ipotesi in cui la densità sia costante e unitaria, l'integrale vale esattamente la lunghezza della curva.
+\begin{gather}
+	f=1 \\
+	\int_\varphi f ds=\mathcal{L}(\varphi)
+\end{gather}
+
+\begin{definition}
+	Data la curva $\varphi:[a, b]\rightarrow\mathbb{R}^2$ di classe $C^1$ e una funzione $f:\varphi([a, b])\rightarrow\mathbb{R}$ continua, si definisce integrale curvilineo di $f$ lungo $\varphi$ il numero:
+	\begin{equation}
+		\int_\varphi f ds=\int_a^b f(\varphi(t))\cdot \left\|\varphi'(t)\right\|dt
+	\end{equation}
+	
+	Dove l'ultima parte dell'integrale (dove $s$ rappresenta il parametro lunghezza d'arco) è data da:
+	\begin{gather}
+		s(t)=\int_a^t \left\|\varphi'(r)\right\|dr \\
+		ds=\left\|\varphi'(t)\right\| dt
+	\end{gather}
+\end{definition}
+
+Viene quindi preso il sostegno, partizionato in infinitesimi segmenti, si valuta la funzione (la densità in quel punto stando nell'esempio) con $f(\varphi(t))$, la si moltiplica per la lunghezza del segmento con $\left\|\varphi'(t)\right\|$ e si fa la somma di tutti i risultati trovati con l'integrale.
+
+Volendo vedere in modo semplificato la somma risulta:
+\begin{equation}
+	f(P_0)\cdot \left\|P_0P_1\right\|+f(P_1)\cdot \left\|P_1P_2\right\|+...
+\end{equation}
+Sempre per intervalli infinitesimi, sommati poi con l'integrale.
+
+\begin{observation}
+A differenza dell'integrale normale, l'integrale curvilineo \textbf{non rappresenta un'area}.	
+\end{observation}
+
+\subsection{Proprietà}
+Se $f, g$ sono continue su $\varphi([a, b])$ e $\lambda, \mu\in \mathbb{R}$:
+\begin{equation}
+	\int_\varphi (\lambda f+\mu g)ds=\lambda\int_\varphi f ds+\mu \int_\varphi g ds
+\end{equation}
+
+Se $\varphi$ è $C^1$ a tratti, cioè $[a, b]=[a_0, a_1]\cup [a_1, a_2]\cup...\cup [a_{n-1}, a_n]$, e $\varphi|_{[a_{j-1}, a_j]}$ è $C^1$, allora:
+\begin{equation}
+	\exists \int_\varphi f ds = \sum_{j-1}^n \int_\varphi|_{[a_{j-1}, a_j]} f ds
+\end{equation}
+
+Inoltre l'integrale curvilineo non risente del verso di percorrenza.
+
+\subsection{Baricentro geometrico}
+Data la curva $\varphi:[a, b]\rightarrow\mathbb{R}^2$, il baricentro geometrico è dato da:
+\begin{equation}
+	x_G=\frac{\int_\varphi x ds}{\mathcal{L}(\varphi)}\quad y_G=\frac{\int_\varphi y ds}{\mathcal{L}(\varphi)}
+\end{equation}
+
+\subsection{Baricentro relativo a densità di massa}
+Il baricentro relativo ad una densità di massa $\rho$ si calcola:
+\begin{equation}
+	x_G=\frac{\int_\varphi x\rho(x, y)ds}{\int_\varphi \rho(x, y)ds} \quad y_G=\frac{\int_\varphi y\rho(x, y)ds}{\int_\varphi \rho(x, y)ds}
+\end{equation}
+
+Se $\varphi$ è equivalente a $\psi$:
+\begin{equation}
+	\int_\varphi fds=\int_\psi fds
+\end{equation}
+
+\section{Curve in $\mathbb{R}^3$}
+Sono curve che, invece di uno spazio in due dimensioni, sono identificate e si muovono in uno spazio in tre dimensioni.
+\begin{gather}
+	\varphi:I\rightarrow\mathbb{R}^3\, \text{continua} \\
+	\begin{cases}
+		x(t) \\
+		y(t) \\
+		z(t)
+	\end{cases}, t\in I \\
+	\varphi'(t)=(x'(t), y'(t), z'(t))
+\end{gather}
+
+Come prima, la curva è regolare se è derivabile e il vettore derivato non è nullo. Anche il baricentro si trova in modo analogo.
+
+\end{document}
